@@ -12,6 +12,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private final int scale = 4;
 
     public Player player;
+    public Enemy enemy;
+    public Ball ball;
 
     public BufferedImage layer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
 
@@ -23,7 +25,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public Game(){
         this.Screen();
         this.addKeyListener(this);
-        player = new Player(15, height*scale/2 - 90);
+        player = new Player(15, height*scale/2 - 70);
+        enemy = new Enemy(width*scale - 45, (double)height*scale/2 - 70);
+        ball = new Ball(((double)(width*scale)/2) - 30,(double)height*scale/2 -30 );
     }
 
     public void Screen(){
@@ -39,6 +43,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public void tick(){
         player.tick();
+        enemy.tick();
+        ball.tick();
+        //This is responsible in make the player don't get away from the screen
         if (player.getY() + player.getHeight() > this.height*scale) player.setY(this.height*scale - player.getHeight());
         else if (player.getY() < 0) player.setY(0);
     }
@@ -50,10 +57,16 @@ public class Game extends Canvas implements Runnable, KeyListener {
             return;
         }
         Graphics graph = layer.getGraphics();
+        //Black BackGround render
         graph.setColor(Color.black);
         graph = bs.getDrawGraphics();
         graph.drawImage(layer,0,0,width*scale,height*scale,null);
+        //Player render
         player.render(graph);
+        //Enemy render
+        enemy.render(graph);
+        ball.render(graph);
+        //show Graphics
         bs.show();
     }
     @Override
