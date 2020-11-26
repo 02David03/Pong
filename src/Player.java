@@ -12,21 +12,10 @@ public class Player {
         this.width = 30;
         this.height = 100;
     }
-    public boolean getUp(){
-        return up;
-    }
-    public boolean getDown(){
-        return down;
-    }
-    public int getWidth(){
-        return width;
-    }
     public int getHeight(){
         return height;
     }
-    public int getX(){
-        return x;
-    }
+
     public int getY(){
         return y;
     }
@@ -39,21 +28,13 @@ public class Player {
         this.down = down;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public void setY(int y) {
         this.y = y;
     }
 
     public void tick(){
-        if (up) y-=5;
-        else if (down) y+=5;
+        if (up) y-=5.5;
+        else if (down) y+=5.5;
     }
     public void render(Graphics graph){
         graph.setColor(Color.white);

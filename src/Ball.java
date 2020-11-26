@@ -6,12 +6,22 @@ public class Ball {
     private double x, y;
     private final int width,height;
 
-    private final double dx,dy;
+    private double dx,dy;
     private final double speed = 3.7;
 
-    public int getWidth() {
-        return width;
+    public void setDy(double dy) {
+        this.dy = dy;
     }
+
+    public double getDy() {
+        return dy;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public double getY() { return y; }
 
     public Ball(double x, double y){
         this.x = x;

@@ -7,8 +7,16 @@ public class Enemy {
     private final int x;
     private final int width,height;
 
-    public int getWidth() {
-        return width;
+    public int getHeight() {
+        return height;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public Enemy(int x, double y){
@@ -19,8 +27,9 @@ public class Enemy {
     }
 
     public void tick(){
-
+        y += Game.ball.getY() - y - 6;
     }
+
     public void render(Graphics graph){
         graph.setColor(Color.white);
         graph.fillRect((int)x,(int)y,width,height);
