@@ -9,6 +9,18 @@ public class Ball {
     private double dx,dy;
     private final double speed = 3.7;
 
+    public double getDx() {
+        return dx;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setDx(double dx) {
+        this.dx = dx;
+    }
+
     public void setDy(double dy) {
         this.dy = dy;
     }
@@ -19,6 +31,14 @@ public class Ball {
 
     public int getHeight() {
         return height;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public double getY() { return y; }

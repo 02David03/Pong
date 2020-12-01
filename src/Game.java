@@ -42,21 +42,28 @@ public class Game extends Canvas implements Runnable, KeyListener {
         screen.setVisible(true);
     }
 
-    public void limits(){
+    public void colision(){
+        Rectangle boundsBall = new Rectangle((int) (ball.getX()+(ball.getDx()*ball.getSpeed())), (int) (ball.getY()+(ball.getDy() * ball.getSpeed())), ball.getWidth(),ball.getHeight());
+        Rectangle boundsPlayer = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        Rectangle boundsEnemy = new Rectangle(enemy.getX(),(int) enemy.getY(), enemy.getWidth(), enemy.getHeight());
 
+        if(boundsBall.intersects(boundsPlayer)) ball.setDx(ball.getDx() * -1);
+        else if (boundsBall.intersects(boundsEnemy)) ball.setDx(ball.getDx() * -1);
     }
-
+////
     public void tick(){
         player.tick();
         enemy.tick();
         ball.tick();
-        //This is responsible in make the player don't get away from the screen
+        //This is responsible in make the player, the enemy and the ball don't get away from the screen
         if (player.getY() + player.getHeight() > this.height*scale) player.setY(this.height*scale - player.getHeight());
         else if (player.getY() < 0) player.setY(0);
         if ( ball.getY() + ball.getHeight() > this.height*scale) ball.setDy(ball.getDy() * -1);
         else if( ball.getY() < 0) ball.setDy(ball.getDy() * -1);
         if (enemy.getY() + enemy.getHeight() > this.height*scale) enemy.setY(this.height*scale - enemy.getHeight());
         else if (enemy.getY() < 0) enemy.setY(0);
+        //Aplication of the colision oh the enemy and the player
+        this.colision();
     }
 
     public void render(){
@@ -74,6 +81,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         player.render(graph);
         //Enemy render
         enemy.render(graph);
+        //Ball render
         ball.render(graph);
         //show Graphics
         bs.show();

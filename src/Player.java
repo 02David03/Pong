@@ -32,6 +32,14 @@ public class Player {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public void tick(){
         if (up) y-=5.5;
         else if (down) y+=5.5;

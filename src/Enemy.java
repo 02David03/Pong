@@ -11,6 +11,14 @@ public class Enemy {
         return height;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public double getY() {
         return y;
     }
